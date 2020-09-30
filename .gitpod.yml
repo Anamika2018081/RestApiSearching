@@ -2,7 +2,4 @@ image:
   file: .gitpod.Dockerfile
 tasks:
   - init: echo "Replace me with a build script for the project."
-    command: mkdir -p /workspace/data && mongod --dbpath /workspace/data &
-tasks:
-  - init: echo "Running New Command"
-    command: cd src/main/resources && mongoimport --type csv -d patient -c patient --headerline maindata.csv   
+    command: mkdir -p /workspace/data && mongod --dbpath /workspace/data &  
