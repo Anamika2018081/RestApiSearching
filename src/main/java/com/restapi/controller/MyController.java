@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.bind.annotation.PathVariable;
@@ -41,9 +42,10 @@ public class MyController {
     }*/
    
 
-    @GetMapping({"/patient/list", "/"})
-    public ResponseEntity<Page<Patient>> listAll(Model model) {
-        Page<Patient> page = myService.listAll(0);
+    @GetMapping({"/patient/list/{pno}", "/"})
+    public ResponseEntity<Page<Patient>> listAll(Model model,@PathVariable String pno) {
+        int i = Integer.parseInt(pno);
+        Page<Patient> page = myService.listAll(i);
         //List<Patient> patientlist = page.getContent();
         System.out.println(page);
         System.out.println(page.getTotalElements());
