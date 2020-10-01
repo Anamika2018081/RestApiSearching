@@ -9,7 +9,9 @@ import com.restapi.repository.MyRepository;
 
 //import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -34,7 +36,16 @@ public class MyServiceImpl implements MyService {
         myRepository.findAll().forEach(patients::add);
         return patients;
     }
+    @Override
+    public Page<Patient> listAll(int pno) {
+        Pageable pageable = PageRequest.of(pno, 50);
+        return myRepository.findAll(pageable);
+    }
 
+    @Override
+     public Page<Patient> findAllByPage(Pageable pageable) {
+        return  myRepository.findAll(pageable);
+    }
     /*
     @Override
     public Patient saveOrUpdate(Patient patient) {

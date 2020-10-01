@@ -5,11 +5,17 @@ import java.util.Optional;
 
 import com.restapi.model.Patient;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 public interface MyService {
     
     List<Patient> listAll();
+    //Page<Patient> listAll();
+    Page<Patient> listAll(int pno);
     List<Patient> getByFnameAndLname(String name);
     //Patient saveOrUpdate(Patient patient);
     Optional<Patient> getByPid(String pid);
+    public Page<Patient> findAllByPage(Pageable pageable);
 
 }
