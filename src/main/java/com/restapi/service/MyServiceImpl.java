@@ -22,12 +22,18 @@ public class MyServiceImpl implements MyService {
     public MyServiceImpl(MyRepository myRepository) {
         this.myRepository = myRepository;
     }
-
+/*
     @Override
     public List<Patient> getByFnameAndLname(String name) {
         List<Patient> patients = new ArrayList<>();
         myRepository.getByFnameAndLname(name).forEach(patients::add);
         return patients;
+    }
+*/
+    @Override
+    public Page<Patient> getByFnameAndLname(String name,int pno) {
+        Pageable pageable = PageRequest.of(pno, 50);
+        return myRepository.getByFnameAndLname(name,pageable);
     }
 
     @Override

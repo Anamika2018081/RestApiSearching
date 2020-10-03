@@ -15,9 +15,10 @@ public interface MyRepository extends CrudRepository<Patient, String> , PagingAn
 
     //List<Patient> getByName(String name);
     
-    @Query(value = "{$or:[{firstname:{$regex:?0,$options:'i'}},{lastname:{$regex:?0,$options:'i'}}]}")
-    List<Patient> getByFnameAndLname(String name);
+    
+    //List<Patient> getByFnameAndLname(String name);
     Page<Patient> findAll(Pageable pageable);
-      
+    @Query(value = "{$or:[{firstname:{$regex:?0,$options:'i'}},{lastname:{$regex:?0,$options:'i'}}]}")
+    Page<Patient> getByFnameAndLname(String name,Pageable page);
     
 }

@@ -59,9 +59,17 @@ public class MyController {
         return myService.getByFnameAndLname(name);
     }
     */
-    @GetMapping("/patient")
+  /*  @GetMapping("/patient")
     public ResponseEntity<List<Patient>> searchPatient(@RequestParam(value = "name") String name) {
         return new ResponseEntity<>(myService.getByFnameAndLname(name), HttpStatus.OK.valueOf(200));
+    }
+    */
+
+    @GetMapping("/patient/{pno}")
+    public ResponseEntity<Page<Patient>> searchPatient(@RequestParam(value = "name") String name,@PathVariable String pno) {
+        int i = Integer.parseInt(pno);
+        Page<Patient> page = myService.getByFnameAndLname(name,i);
+        return new ResponseEntity<>(page, HttpStatus.OK.valueOf(200));
     }
 
     /*@RequestMapping(value = "/test",method = RequestMethod.GET)
